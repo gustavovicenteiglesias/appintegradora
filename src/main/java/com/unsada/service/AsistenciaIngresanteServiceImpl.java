@@ -5,46 +5,46 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.unsada.dao.AulaDao;
-import com.unsada.model.Aula;
-@Service 
-public class AulaServiceImpl implements AulaServiceApi {
+import com.unsada.dao.AsistenciaingresanteDao;
+import com.unsada.model.Asistenciaingresante;
+@Service
+public class AsistenciaIngresanteServiceImpl implements AsistenciaIngresanteServiceApi {
 	@Autowired
-	AulaDao aulaDao;
+	AsistenciaingresanteDao asistenciaIngresanteDao;
 	@Override
-	public <S extends Aula> S save(S entity) {
+	public <S extends Asistenciaingresante> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Aula> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends Asistenciaingresante> Iterable<S> saveAll(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Optional<Aula> findById(Integer id) {
+	public Optional<Asistenciaingresante> findById(Integer id) {
 		// TODO Auto-generated method stub
-		return aulaDao.findById(id);
+		return asistenciaIngresanteDao.findById(id);
 	}
 
 	@Override
 	public boolean existsById(Integer id) {
 		// TODO Auto-generated method stub
-		return aulaDao.existsById(id);
+		return asistenciaIngresanteDao.existsById(id);
 	}
 
 	@Override
-	public Iterable<Aula> findAll() {
+	public Iterable<Asistenciaingresante> findAll() {
 		// TODO Auto-generated method stub
-		return aulaDao.findAll();
+		return asistenciaIngresanteDao.findAll();
 	}
 
 	@Override
-	public Iterable<Aula> findAllById(Iterable<Integer> ids) {
+	public Iterable<Asistenciaingresante> findAllById(Iterable<Integer> ids) {
 		// TODO Auto-generated method stub
-		return aulaDao.findAllById(ids);
+		return asistenciaIngresanteDao.findAllById(ids);
 	}
 
 	@Override
@@ -60,13 +60,13 @@ public class AulaServiceImpl implements AulaServiceApi {
 	}
 
 	@Override
-	public void delete(Aula entity) {
+	public void delete(Asistenciaingresante entity) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void deleteAll(Iterable<? extends Aula> entities) {
+	public void deleteAll(Iterable<? extends Asistenciaingresante> entities) {
 		// TODO Auto-generated method stub
 
 	}

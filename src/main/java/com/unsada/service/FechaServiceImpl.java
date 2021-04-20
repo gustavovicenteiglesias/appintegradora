@@ -5,46 +5,46 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.unsada.dao.AulaDao;
-import com.unsada.model.Aula;
-@Service 
-public class AulaServiceImpl implements AulaServiceApi {
+import com.unsada.dao.FechaDao;
+import com.unsada.model.Fecha;
+@Service
+public class FechaServiceImpl implements FechaServiceApi {
 	@Autowired
-	AulaDao aulaDao;
+	FechaDao fechaDao;
 	@Override
-	public <S extends Aula> S save(S entity) {
+	public <S extends Fecha> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Aula> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends Fecha> Iterable<S> saveAll(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Optional<Aula> findById(Integer id) {
+	public Optional<Fecha> findById(Integer id) {
 		// TODO Auto-generated method stub
-		return aulaDao.findById(id);
+		return fechaDao.findById(id);
 	}
 
 	@Override
 	public boolean existsById(Integer id) {
 		// TODO Auto-generated method stub
-		return aulaDao.existsById(id);
+		return fechaDao.existsById(id);
 	}
 
 	@Override
-	public Iterable<Aula> findAll() {
+	public Iterable<Fecha> findAll() {
 		// TODO Auto-generated method stub
-		return aulaDao.findAll();
+		return fechaDao.findAll();
 	}
 
 	@Override
-	public Iterable<Aula> findAllById(Iterable<Integer> ids) {
+	public Iterable<Fecha> findAllById(Iterable<Integer> ids) {
 		// TODO Auto-generated method stub
-		return aulaDao.findAllById(ids);
+		return fechaDao.findAllById(ids);
 	}
 
 	@Override
@@ -60,13 +60,13 @@ public class AulaServiceImpl implements AulaServiceApi {
 	}
 
 	@Override
-	public void delete(Aula entity) {
+	public void delete(Fecha entity) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void deleteAll(Iterable<? extends Aula> entities) {
+	public void deleteAll(Iterable<? extends Fecha> entities) {
 		// TODO Auto-generated method stub
 
 	}

@@ -5,46 +5,46 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.unsada.dao.AulaDao;
-import com.unsada.model.Aula;
-@Service 
-public class AulaServiceImpl implements AulaServiceApi {
+import com.unsada.dao.UserDao;
+import com.unsada.model.User;
+@Service
+public class UserServiceImpl implements UserServiceApi {
 	@Autowired
-	AulaDao aulaDao;
+	UserDao userDao;
 	@Override
-	public <S extends Aula> S save(S entity) {
+	public <S extends User> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Aula> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends User> Iterable<S> saveAll(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Optional<Aula> findById(Integer id) {
+	public Optional<User> findById(Integer id) {
 		// TODO Auto-generated method stub
-		return aulaDao.findById(id);
+		return userDao.findById(id);
 	}
 
 	@Override
 	public boolean existsById(Integer id) {
 		// TODO Auto-generated method stub
-		return aulaDao.existsById(id);
+		return userDao.existsById(id);
 	}
 
 	@Override
-	public Iterable<Aula> findAll() {
+	public Iterable<User> findAll() {
 		// TODO Auto-generated method stub
-		return aulaDao.findAll();
+		return userDao.findAll();
 	}
 
 	@Override
-	public Iterable<Aula> findAllById(Iterable<Integer> ids) {
+	public Iterable<User> findAllById(Iterable<Integer> ids) {
 		// TODO Auto-generated method stub
-		return aulaDao.findAllById(ids);
+		return userDao.findAllById(ids);
 	}
 
 	@Override
@@ -60,13 +60,13 @@ public class AulaServiceImpl implements AulaServiceApi {
 	}
 
 	@Override
-	public void delete(Aula entity) {
+	public void delete(User entity) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void deleteAll(Iterable<? extends Aula> entities) {
+	public void deleteAll(Iterable<? extends User> entities) {
 		// TODO Auto-generated method stub
 
 	}

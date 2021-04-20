@@ -5,46 +5,46 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.unsada.dao.AulaDao;
-import com.unsada.model.Aula;
-@Service 
-public class AulaServiceImpl implements AulaServiceApi {
+import com.unsada.dao.IngresanteDao;
+import com.unsada.model.Ingresante;
+@Service
+public class IngresanteServiceImpl implements IngresanteServiceApi {
 	@Autowired
-	AulaDao aulaDao;
+	IngresanteDao ingresanteDao;
 	@Override
-	public <S extends Aula> S save(S entity) {
+	public <S extends Ingresante> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Aula> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends Ingresante> Iterable<S> saveAll(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Optional<Aula> findById(Integer id) {
+	public Optional<Ingresante> findById(Integer id) {
 		// TODO Auto-generated method stub
-		return aulaDao.findById(id);
+		return ingresanteDao.findById(id);
 	}
 
 	@Override
 	public boolean existsById(Integer id) {
 		// TODO Auto-generated method stub
-		return aulaDao.existsById(id);
+		return ingresanteDao.existsById(id);
 	}
 
 	@Override
-	public Iterable<Aula> findAll() {
+	public Iterable<Ingresante> findAll() {
 		// TODO Auto-generated method stub
-		return aulaDao.findAll();
+		return ingresanteDao.findAll();
 	}
 
 	@Override
-	public Iterable<Aula> findAllById(Iterable<Integer> ids) {
+	public Iterable<Ingresante> findAllById(Iterable<Integer> ids) {
 		// TODO Auto-generated method stub
-		return aulaDao.findAllById(ids);
+		return ingresanteDao.findAllById(ids);
 	}
 
 	@Override
@@ -60,13 +60,13 @@ public class AulaServiceImpl implements AulaServiceApi {
 	}
 
 	@Override
-	public void delete(Aula entity) {
+	public void delete(Ingresante entity) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void deleteAll(Iterable<? extends Aula> entities) {
+	public void deleteAll(Iterable<? extends Ingresante> entities) {
 		// TODO Auto-generated method stub
 
 	}

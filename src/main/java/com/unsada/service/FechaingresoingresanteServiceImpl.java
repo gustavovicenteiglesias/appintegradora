@@ -5,46 +5,46 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.unsada.dao.AulaDao;
-import com.unsada.model.Aula;
-@Service 
-public class AulaServiceImpl implements AulaServiceApi {
+import com.unsada.dao.FechaingresoingresanteDao;
+import com.unsada.model.Fechaingresoingresante;
+@Service
+public class FechaingresoingresanteServiceImpl implements FechaingresoingresanteServiceApi {
 	@Autowired
-	AulaDao aulaDao;
+	FechaingresoingresanteDao fechaingresoingresanteDao;
 	@Override
-	public <S extends Aula> S save(S entity) {
+	public <S extends Fechaingresoingresante> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Aula> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends Fechaingresoingresante> Iterable<S> saveAll(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Optional<Aula> findById(Integer id) {
+	public Optional<Fechaingresoingresante> findById(Integer id) {
 		// TODO Auto-generated method stub
-		return aulaDao.findById(id);
+		return fechaingresoingresanteDao.findById(id);
 	}
 
 	@Override
 	public boolean existsById(Integer id) {
 		// TODO Auto-generated method stub
-		return aulaDao.existsById(id);
+		return fechaingresoingresanteDao.existsById(id);
 	}
 
 	@Override
-	public Iterable<Aula> findAll() {
+	public Iterable<Fechaingresoingresante> findAll() {
 		// TODO Auto-generated method stub
-		return aulaDao.findAll();
+		return fechaingresoingresanteDao.findAll();
 	}
 
 	@Override
-	public Iterable<Aula> findAllById(Iterable<Integer> ids) {
+	public Iterable<Fechaingresoingresante> findAllById(Iterable<Integer> ids) {
 		// TODO Auto-generated method stub
-		return aulaDao.findAllById(ids);
+		return fechaingresoingresanteDao.findAllById(ids);
 	}
 
 	@Override
@@ -60,13 +60,13 @@ public class AulaServiceImpl implements AulaServiceApi {
 	}
 
 	@Override
-	public void delete(Aula entity) {
+	public void delete(Fechaingresoingresante entity) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void deleteAll(Iterable<? extends Aula> entities) {
+	public void deleteAll(Iterable<? extends Fechaingresoingresante> entities) {
 		// TODO Auto-generated method stub
 
 	}
