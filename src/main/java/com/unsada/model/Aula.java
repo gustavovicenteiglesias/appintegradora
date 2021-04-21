@@ -20,15 +20,7 @@ public class Aula implements Serializable {
 	private int idAula;
 	private int capacidad;
 	private String nombre;
-	@Column(name="comision_idcomision")
-	private int comisionIdcomision;
-
-	private String direccion;
-
-	private String edificio;
-
 	
-
 	//bi-directional many-to-one association to Actividad
 	@OneToMany(mappedBy="aula")
 	private List<Actividad> actividads;
@@ -63,30 +55,6 @@ public class Aula implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public int getComisionIdcomision() {
-		return comisionIdcomision;
-	}
-
-	public void setComisionIdcomision(int comisionIdcomision) {
-		this.comisionIdcomision = comisionIdcomision;
-	}
-
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	public String getEdificio() {
-		return edificio;
-	}
-
-	public void setEdificio(String edificio) {
-		this.edificio = edificio;
 	}
 
 	public List<Actividad> getActividads() {

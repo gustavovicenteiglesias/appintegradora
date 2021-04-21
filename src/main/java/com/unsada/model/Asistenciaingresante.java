@@ -18,7 +18,7 @@ public class Asistenciaingresante implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idAsistenciaIngresante;
 
-	private int fechaingresoingresante_ingresante_idIngresante;
+	private int id_fecha_ingresante;
 
 	private byte habilitado;
 
@@ -26,12 +26,12 @@ public class Asistenciaingresante implements Serializable {
 
 	//bi-directional many-to-one association to Fechaingresoingresante
 	@ManyToOne()
-	@JoinColumn(name = "fechaingresoingresante_id")
+	@JoinColumn(name = "id_fecha_ingresante")
 	private Fechaingresoingresante fechaingresoingresante;
 
 	//bi-directional many-to-one association to Horariosactividad
 	@ManyToOne()
-	@JoinColumn(name = "horariosactividad_id")
+	@JoinColumn(name = "id_horario_actividad")
 	private Horariosactividad horariosactividad;
 
 	public Asistenciaingresante() {
@@ -45,12 +45,12 @@ public class Asistenciaingresante implements Serializable {
 		this.idAsistenciaIngresante = idAsistenciaIngresante;
 	}
 
-	public int getFechaingresoingresante_ingresante_idIngresante() {
-		return this.fechaingresoingresante_ingresante_idIngresante;
+	public int getIdFechaIngresante() {
+		return this.id_fecha_ingresante;
 	}
 
-	public void setFechaingresoingresante_ingresante_idIngresante(int fechaingresoingresante_ingresante_idIngresante) {
-		this.fechaingresoingresante_ingresante_idIngresante = fechaingresoingresante_ingresante_idIngresante;
+	public void setIdFechaIngresante(int id_fecha_ingresante) {
+		this.id_fecha_ingresante = id_fecha_ingresante;
 	}
 
 	public byte getHabilitado() {

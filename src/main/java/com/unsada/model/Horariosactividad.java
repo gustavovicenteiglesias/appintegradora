@@ -20,15 +20,12 @@ public class Horariosactividad implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idHorarioActividad;
 
-	@Column(name="Domingo")
-	private byte domingo;
 
 	private Time horaFin;
 
 	private Time horaInicio;
 
-	@Column(name="Jueves")
-	private byte jueves;
+	
 
 	@Column(name="Lunes")
 	private byte lunes;
@@ -39,11 +36,20 @@ public class Horariosactividad implements Serializable {
 	@Column(name="Miercoles")
 	private byte miercoles;
 
-	@Column(name="Sabado")
-	private byte sabado;
+	@Column(name="Jueves")
+	private byte jueves;
 
 	@Column(name="Viernes")
 	private byte viernes;
+
+	@Column(name="Sabado")
+	private byte sabado;
+
+	@Column(name="Domingo")
+	private byte domingo;
+
+	
+	
 
 	//bi-directional many-to-one association to Asistenciaingresante
 	@OneToMany(mappedBy="horariosactividad")

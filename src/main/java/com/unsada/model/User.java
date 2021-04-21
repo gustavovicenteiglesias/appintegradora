@@ -27,13 +27,10 @@ public class User implements Serializable {
 	 @ManyToMany(mappedBy = "user")
 	 private List<Authority>  authority;
 	 
-	 
-
+	
 	public User() {
 		super();
 	}
-
-
 
 	public Integer getIdUser() {
 		return idUser;
