@@ -16,6 +16,7 @@ public class Sede implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idSede;
 
 	private String lugar;

@@ -17,6 +17,7 @@ public class Horariosactividad implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idHorarioActividad;
 
 	@Column(name="Domingo")
@@ -53,8 +54,7 @@ public class Horariosactividad implements Serializable {
 	private List<Fecha> fechas;
 
 	//bi-directional many-to-one association to Actividad
-	@ManyToOne
-	@JoinColumn(name="idActividad")
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Actividad actividad;
 
 	public Horariosactividad() {

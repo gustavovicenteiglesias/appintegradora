@@ -16,12 +16,10 @@ public class Aula implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idAula;
-
-	private String capacidad;
-
 	private int capacidad;
-
+	private String nombre;
 	@Column(name="comision_idcomision")
 	private int comisionIdcomision;
 
@@ -29,51 +27,46 @@ public class Aula implements Serializable {
 
 	private String edificio;
 
-	@Column(name="id_aula")
-	private int idAula;
-
-	private String nombre;
-
-	private String nombre;
+	
 
 	//bi-directional many-to-one association to Actividad
 	@OneToMany(mappedBy="aula")
 	private List<Actividad> actividads;
 
 	//bi-directional many-to-one association to Edificio
-	@ManyToOne
-	@JoinColumn(name="idEdificio")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="edificio_idEdificio")
 	private Edificio edificioBean;
 
 	public Aula() {
 	}
 
 	public int getIdAula() {
-		return this.idAula;
+		return idAula;
 	}
 
 	public void setIdAula(int idAula) {
 		this.idAula = idAula;
 	}
 
-	public String getCapacidad() {
-		return this.capacidad;
-	}
-
-	public void setCapacidad(String capacidad) {
-		this.capacidad = capacidad;
-	}
-
 	public int getCapacidad() {
-		return this.capacidad;
+		return capacidad;
 	}
 
 	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public int getComisionIdcomision() {
-		return this.comisionIdcomision;
+		return comisionIdcomision;
 	}
 
 	public void setComisionIdcomision(int comisionIdcomision) {
@@ -81,7 +74,7 @@ public class Aula implements Serializable {
 	}
 
 	public String getDireccion() {
-		return this.direccion;
+		return direccion;
 	}
 
 	public void setDireccion(String direccion) {
@@ -89,65 +82,33 @@ public class Aula implements Serializable {
 	}
 
 	public String getEdificio() {
-		return this.edificio;
+		return edificio;
 	}
 
 	public void setEdificio(String edificio) {
 		this.edificio = edificio;
 	}
 
-	public int getIdAula() {
-		return this.idAula;
-	}
-
-	public void setIdAula(int idAula) {
-		this.idAula = idAula;
-	}
-
-	public String getNombre() {
-		return this.nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getNombre() {
-		return this.nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	public List<Actividad> getActividads() {
-		return this.actividads;
+		return actividads;
 	}
 
 	public void setActividads(List<Actividad> actividads) {
 		this.actividads = actividads;
 	}
 
-	public Actividad addActividad(Actividad actividad) {
-		getActividads().add(actividad);
-		actividad.setAula(this);
-
-		return actividad;
-	}
-
-	public Actividad removeActividad(Actividad actividad) {
-		getActividads().remove(actividad);
-		actividad.setAula(null);
-
-		return actividad;
-	}
-
 	public Edificio getEdificioBean() {
-		return this.edificioBean;
+		return edificioBean;
 	}
 
 	public void setEdificioBean(Edificio edificioBean) {
 		this.edificioBean = edificioBean;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 
 }

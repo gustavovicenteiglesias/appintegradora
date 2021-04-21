@@ -17,6 +17,7 @@ public class Actividad implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idActividad;
 
 	@Temporal(TemporalType.DATE)
@@ -26,8 +27,8 @@ public class Actividad implements Serializable {
 	private Date fechaInicio;
 
 	//bi-directional many-to-one association to Aula
-	@ManyToOne
-	@JoinColumn(name="idAula")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "idAula")
 	private Aula aula;
 
 	//bi-directional many-to-one association to Horariosactividad

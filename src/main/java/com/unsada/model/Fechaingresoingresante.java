@@ -17,7 +17,8 @@ public class Fechaingresoingresante implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String idFechaIngresante;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer idFechaIngresante;
 
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
@@ -27,18 +28,18 @@ public class Fechaingresoingresante implements Serializable {
 	private List<Asistenciaingresante> asistenciaingresantes;
 
 	//bi-directional many-to-one association to Ingresante
-	@ManyToOne
-	@JoinColumn(name="idIngresante")
+	@ManyToOne()
+	@JoinColumn(name = "ingresante_id")
 	private Ingresante ingresante;
 
 	public Fechaingresoingresante() {
 	}
 
-	public String getIdFechaIngresante() {
+	public Integer getIdFechaIngresante() {
 		return this.idFechaIngresante;
 	}
 
-	public void setIdFechaIngresante(String idFechaIngresante) {
+	public void setIdFechaIngresante(Integer idFechaIngresante) {
 		this.idFechaIngresante = idFechaIngresante;
 	}
 

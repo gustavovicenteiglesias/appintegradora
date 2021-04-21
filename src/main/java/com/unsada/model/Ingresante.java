@@ -16,6 +16,7 @@ public class Ingresante implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idIngresante;
 
 	private String dni;
@@ -32,6 +33,7 @@ public class Ingresante implements Serializable {
 
 	//bi-directional many-to-one association to Fechaingresoingresante
 	@OneToMany(mappedBy="ingresante")
+	
 	private List<Fechaingresoingresante> fechaingresoingresantes;
 
 	public Ingresante() {

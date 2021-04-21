@@ -16,6 +16,7 @@ public class Edificio implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idEdificio;
 
 	private String ciudad;
@@ -29,8 +30,7 @@ public class Edificio implements Serializable {
 	private List<Aula> aulas;
 
 	//bi-directional many-to-one association to Sede
-	@ManyToOne
-	@JoinColumn(name="Sede_idSede")
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Sede sede;
 
 	public Edificio() {

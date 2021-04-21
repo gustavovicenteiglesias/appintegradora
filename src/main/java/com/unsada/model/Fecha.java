@@ -16,14 +16,14 @@ public class Fecha implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idFechas;
 
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
 
 	//bi-directional many-to-one association to Horariosactividad
-	@ManyToOne
-	@JoinColumn(name="HorariosActividad_idHorarioActividad")
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Horariosactividad horariosactividad;
 
 	public Fecha() {
