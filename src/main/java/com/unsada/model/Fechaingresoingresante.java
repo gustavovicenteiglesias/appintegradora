@@ -18,6 +18,7 @@ public class Fechaingresoingresante implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_Fecha_Ingresante")
 	private Integer idFechaIngresante;
 
 	@Temporal(TemporalType.DATE)

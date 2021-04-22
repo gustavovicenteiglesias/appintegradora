@@ -26,7 +26,7 @@ public class Asistenciaingresante implements Serializable {
 
 	//bi-directional many-to-one association to Fechaingresoingresante
 	@ManyToOne()
-	@JoinColumn(name = "id_fecha_ingresante")
+	@JoinColumn(name = "id_fecha_ingresante1", nullable = false)
 	private Fechaingresoingresante fechaingresoingresante;
 
 	//bi-directional many-to-one association to Horariosactividad
