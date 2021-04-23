@@ -65,7 +65,7 @@ public class Asistenciaingresante implements Serializable {
 	public void setPresente(byte presente) {
 		this.presente = presente;
 	}
-	@JsonManagedReference
+	@JsonBackReference
 	public Fechaingresoingresante getFechaingresoingresante() {
 		return fechaingresoingresante;
 	}

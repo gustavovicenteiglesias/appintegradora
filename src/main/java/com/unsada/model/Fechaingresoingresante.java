@@ -55,7 +55,7 @@ public class Fechaingresoingresante implements Serializable {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	@JsonBackReference
+	@JsonManagedReference
 	public List<Asistenciaingresante> getAsistenciaingresantes() {
 		return this.asistenciaingresantes;
 	}
@@ -77,7 +77,7 @@ public class Fechaingresoingresante implements Serializable {
 
 		return asistenciaingresante;
 	}
-	@JsonManagedReference
+	@JsonBackReference
 	public Ingresante getIngresante() {
 		return this.ingresante;
 	}

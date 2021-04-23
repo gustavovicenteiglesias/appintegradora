@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class Sede implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	@JsonBackReference
+	@JsonManagedReference
 	public List<Edificio> getEdificios() {
 		return this.edificios;
 	}

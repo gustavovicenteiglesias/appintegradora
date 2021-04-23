@@ -4,6 +4,10 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
@@ -39,12 +43,18 @@ public class Ingresante implements Serializable {
 	
 	private List<Fechaingresoingresante> fechaingresoingresantes;
 
-	public Ingresante() {
+	
+	 public Ingresante() {
+		super();
 	}
 
+	
+	 
 	public int getIdIngresante() {
 		return this.idIngresante;
 	}
+
+	
 
 	public void setIdIngresante(int idIngresante) {
 		this.idIngresante = idIngresante;
@@ -97,22 +107,22 @@ public class Ingresante implements Serializable {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	@JsonBackReference
+	@JsonManagedReference
 	public List<Fechaingresoingresante> getFechaingresoingresantes() {
 		return this.fechaingresoingresantes;
 	}
-
+	
 	public void setFechaingresoingresantes(List<Fechaingresoingresante> fechaingresoingresantes) {
 		this.fechaingresoingresantes = fechaingresoingresantes;
 	}
-
+	
 	public Fechaingresoingresante addFechaingresoingresante(Fechaingresoingresante fechaingresoingresante) {
 		getFechaingresoingresantes().add(fechaingresoingresante);
 		fechaingresoingresante.setIngresante(this);
 
 		return fechaingresoingresante;
 	}
-
+	
 	public Fechaingresoingresante removeFechaingresoingresante(Fechaingresoingresante fechaingresoingresante) {
 		getFechaingresoingresantes().remove(fechaingresoingresante);
 		fechaingresoingresante.setIngresante(null);

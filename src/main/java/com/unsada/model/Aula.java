@@ -60,7 +60,7 @@ public class Aula implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	@JsonBackReference
+	@JsonManagedReference
 	public List<Actividad> getActividads() {
 		return actividads;
 	}
@@ -68,7 +68,7 @@ public class Aula implements Serializable {
 	public void setActividads(List<Actividad> actividads) {
 		this.actividads = actividads;
 	}
-	@JsonManagedReference
+	@JsonBackReference
 	public Edificio getEdificioBean() {
 		return edificioBean;
 	}

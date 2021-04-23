@@ -71,7 +71,7 @@ public class Edificio implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	@JsonBackReference
+	@JsonManagedReference
 	public List<Aula> getAulas() {
 		return aulas;
 	}
@@ -79,7 +79,7 @@ public class Edificio implements Serializable {
 	public void setAulas(List<Aula> aulas) {
 		this.aulas = aulas;
 	}
-	@JsonManagedReference
+	@JsonBackReference
 	public Sede getSede() {
 		return sede;
 	}

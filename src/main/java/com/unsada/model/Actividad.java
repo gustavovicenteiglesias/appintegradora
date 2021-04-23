@@ -3,6 +3,7 @@ package com.unsada.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -66,7 +67,7 @@ public class Actividad implements Serializable {
 	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
-	@JsonManagedReference
+	@JsonBackReference
 	public Aula getAula() {
 		return this.aula;
 	}
