@@ -2,6 +2,10 @@ package com.unsada.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Date;
 import java.util.List;
 
@@ -27,11 +31,12 @@ public class Actividad implements Serializable {
 	private Date fechaInicio;
 
 	//bi-directional many-to-one association to Aula
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "idAula")
 	private Aula aula;
 
 	//bi-directional many-to-one association to Horariosactividad
+	
 	@OneToMany(mappedBy="actividad")
 	private List<Horariosactividad> horariosactividads;
 
@@ -61,7 +66,7 @@ public class Actividad implements Serializable {
 	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
-
+	@JsonManagedReference
 	public Aula getAula() {
 		return this.aula;
 	}
@@ -69,7 +74,7 @@ public class Actividad implements Serializable {
 	public void setAula(Aula aula) {
 		this.aula = aula;
 	}
-
+	@JsonManagedReference
 	public List<Horariosactividad> getHorariosactividads() {
 		return this.horariosactividads;
 	}

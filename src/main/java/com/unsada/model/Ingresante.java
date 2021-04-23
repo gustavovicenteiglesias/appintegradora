@@ -2,6 +2,9 @@ package com.unsada.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.List;
 
 
@@ -94,7 +97,7 @@ public class Ingresante implements Serializable {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-
+	@JsonBackReference
 	public List<Fechaingresoingresante> getFechaingresoingresantes() {
 		return this.fechaingresoingresantes;
 	}

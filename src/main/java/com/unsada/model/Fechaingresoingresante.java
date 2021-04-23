@@ -2,6 +2,10 @@ package com.unsada.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Date;
 import java.util.List;
 
@@ -51,7 +55,7 @@ public class Fechaingresoingresante implements Serializable {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-
+	@JsonBackReference
 	public List<Asistenciaingresante> getAsistenciaingresantes() {
 		return this.asistenciaingresantes;
 	}
@@ -73,7 +77,7 @@ public class Fechaingresoingresante implements Serializable {
 
 		return asistenciaingresante;
 	}
-
+	@JsonManagedReference
 	public Ingresante getIngresante() {
 		return this.ingresante;
 	}

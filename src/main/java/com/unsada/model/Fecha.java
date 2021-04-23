@@ -2,6 +2,9 @@ package com.unsada.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.Date;
 
 
@@ -23,7 +26,7 @@ public class Fecha implements Serializable {
 	private Date fecha;
 
 	//bi-directional many-to-one association to Horariosactividad
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	private Horariosactividad horariosactividad;
 
 	public Fecha() {
@@ -36,7 +39,7 @@ public class Fecha implements Serializable {
 	public void setIdFechas(int idFechas) {
 		this.idFechas = idFechas;
 	}
-
+	
 	public Date getFecha() {
 		return this.fecha;
 	}
@@ -44,7 +47,7 @@ public class Fecha implements Serializable {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-
+	@JsonBackReference
 	public Horariosactividad getHorariosactividad() {
 		return this.horariosactividad;
 	}

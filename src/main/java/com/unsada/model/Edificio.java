@@ -2,6 +2,10 @@ package com.unsada.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 
@@ -30,57 +34,64 @@ public class Edificio implements Serializable {
 	private List<Aula> aulas;
 
 	//bi-directional many-to-one association to Sede
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(optional = false)
 	private Sede sede;
 
 	public Edificio() {
 	}
 
 	public int getIdEdificio() {
-		return this.idEdificio;
+		return idEdificio;
 	}
 
 	public void setIdEdificio(int idEdificio) {
 		this.idEdificio = idEdificio;
 	}
 
-	
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+	@JsonBackReference
 	public List<Aula> getAulas() {
-		return this.aulas;
+		return aulas;
 	}
 
 	public void setAulas(List<Aula> aulas) {
 		this.aulas = aulas;
 	}
-
-	public Aula addAula(Aula aula) {
-		getAulas().add(aula);
-		aula.setEdificioBean(this);
-
-		return aula;
-	}
-
-	public Aula removeAula(Aula aula) {
-		getAulas().remove(aula);
-		aula.setEdificioBean(null);
-
-		return aula;
-	}
-
+	@JsonManagedReference
 	public Sede getSede() {
-		return this.sede;
+		return sede;
 	}
 
 	public void setSede(Sede sede) {
 		this.sede = sede;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 
 }

@@ -2,6 +2,10 @@ package com.unsada.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 
@@ -26,7 +30,7 @@ public class Aula implements Serializable {
 	private List<Actividad> actividads;
 
 	//bi-directional many-to-one association to Edificio
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(optional = false)
 	@JoinColumn(name="edificio_idEdificio")
 	private Edificio edificioBean;
 
@@ -56,7 +60,7 @@ public class Aula implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+	@JsonBackReference
 	public List<Actividad> getActividads() {
 		return actividads;
 	}
@@ -64,7 +68,7 @@ public class Aula implements Serializable {
 	public void setActividads(List<Actividad> actividads) {
 		this.actividads = actividads;
 	}
-
+	@JsonManagedReference
 	public Edificio getEdificioBean() {
 		return edificioBean;
 	}
