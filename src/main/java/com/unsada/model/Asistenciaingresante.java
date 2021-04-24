@@ -30,13 +30,15 @@ public class Asistenciaingresante implements Serializable {
 
 	//bi-directional many-to-one association to Fechaingresoingresante
 	
-	@ManyToOne()
-	@JoinColumn(name = "id_fecha_ingresante", nullable = false)
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "id_fecha_ingresante")
+	@JsonBackReference(value="asistencia-fechaingresoingresante")
 	private Fechaingresoingresante fechaingresoingresante;
 
 	//bi-directional many-to-one association to Horariosactividad
-	@ManyToOne()
+	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_horario_actividad")
+	@JsonBackReference(value="asistencia-horariosactividad")
 	private Horariosactividad horariosactividad;
 
 	public Asistenciaingresante() {
@@ -65,7 +67,7 @@ public class Asistenciaingresante implements Serializable {
 	public void setPresente(byte presente) {
 		this.presente = presente;
 	}
-	@JsonBackReference
+	
 	public Fechaingresoingresante getFechaingresoingresante() {
 		return fechaingresoingresante;
 	}
@@ -73,7 +75,7 @@ public class Asistenciaingresante implements Serializable {
 	public void setFechaingresoingresante(Fechaingresoingresante fechaingresoingresante) {
 		this.fechaingresoingresante = fechaingresoingresante;
 	}
-	@JsonBackReference
+	
 	public Horariosactividad getHorariosactividad() {
 		return horariosactividad;
 	}

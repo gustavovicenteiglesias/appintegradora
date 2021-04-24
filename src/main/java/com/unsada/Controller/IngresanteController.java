@@ -83,7 +83,7 @@ public ResponseEntity<String> create(@RequestBody Ingresante data) {
 
 	try {
 		
-		ingresanteServiceApi.save(data);
+		ingresanteServiceApi.saveingresante(data.getDni(),data.getEnSeguimiento(),data.getGrupoDeRiesgo(),data.getMail(),data.getNombre(),data.getTelefono());
 		return new ResponseEntity<>("Save successful ", HttpStatus.OK);
 	} catch (Exception e) {
 		
@@ -100,7 +100,10 @@ public Map<String, Object> update(@PathVariable("id") Integer id, @RequestBody I
 
 	try {
 		data.setIdIngresante(id);;
-		ingresanteServiceApi.save(data);
+		ingresanteServiceApi.update(id,
+				data.getDni(), data.getEnSeguimiento(),
+				data.getGrupoDeRiesgo(), data.getMail(),
+				data.getNombre(), data.getTelefono(), id);;
 		response.put("message", "Successful update");
 		response.put("success", true);
 		return response;

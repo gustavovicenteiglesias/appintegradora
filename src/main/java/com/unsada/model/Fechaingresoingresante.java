@@ -30,11 +30,13 @@ public class Fechaingresoingresante implements Serializable {
 
 	//bi-directional many-to-one association to Asistenciaingresante
 	@OneToMany(mappedBy="fechaingresoingresante")
+	@JsonManagedReference
 	private List<Asistenciaingresante> asistenciaingresantes;
 
 	//bi-directional many-to-one association to Ingresante
-	@ManyToOne()
+	@ManyToOne(optional = true)
 	@JoinColumn(name = "ingresante_id")
+	@JsonBackReference(value="ingresante-fecha")
 	private Ingresante ingresante;
 
 	public Fechaingresoingresante() {
@@ -55,7 +57,7 @@ public class Fechaingresoingresante implements Serializable {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	@JsonManagedReference
+	
 	public List<Asistenciaingresante> getAsistenciaingresantes() {
 		return this.asistenciaingresantes;
 	}
@@ -77,7 +79,7 @@ public class Fechaingresoingresante implements Serializable {
 
 		return asistenciaingresante;
 	}
-	@JsonBackReference
+	
 	public Ingresante getIngresante() {
 		return this.ingresante;
 	}

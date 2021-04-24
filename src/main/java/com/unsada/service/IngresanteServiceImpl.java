@@ -77,4 +77,25 @@ public class IngresanteServiceImpl implements IngresanteServiceApi {
 
 	}
 
+	@Override
+	public void saveingresante(String dni, byte enseguimiento, byte riesgo, String mail, String nombre,
+			String telefono) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(Integer id, String dni, byte enseguimiento, byte gruporiego, String mail, String nombre,
+			String telefono, Integer where) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
+	
+
+	
+
 }

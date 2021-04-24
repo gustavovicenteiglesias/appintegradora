@@ -40,7 +40,7 @@ public class Ingresante implements Serializable {
 
 	//bi-directional many-to-one association to Fechaingresoingresante
 	@OneToMany(mappedBy="ingresante")
-	
+	@JsonIgnore
 	private List<Fechaingresoingresante> fechaingresoingresantes;
 
 	
@@ -107,7 +107,7 @@ public class Ingresante implements Serializable {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	@JsonManagedReference
+	
 	public List<Fechaingresoingresante> getFechaingresoingresantes() {
 		return this.fechaingresoingresantes;
 	}
