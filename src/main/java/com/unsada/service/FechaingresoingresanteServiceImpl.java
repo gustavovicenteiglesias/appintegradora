@@ -1,6 +1,7 @@
 package com.unsada.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +86,12 @@ public class FechaingresoingresanteServiceImpl implements Fechaingresoingresante
 	public void saveFechaIngresoIngresante(String date, Integer ingresante) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Fechaingresoingresante> findByIngresante(Ingresante ingresante) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

@@ -142,8 +142,8 @@ public Map<String, Object> update(@PathVariable("id") Integer id) {
 	}
 
 }
-@PostMapping(value = "/nueva-fecha-ingreso/{id}")
-public ResponseEntity<String> nuevaFechaDeIngreso(@PathVariable("id") Integer id, @RequestBody Fechaingresoingresante fechaIngreso)  {
+@PostMapping(value = "/nueva-fecha-ingreso/{idIngresante}")
+public ResponseEntity<String> nuevaFechaDeIngreso(@PathVariable("idIngresante") Integer id, @RequestBody Fechaingresoingresante fechaIngreso)  {
 
 	try {
 		Optional<Ingresante> ingresante = ingresanteServiceApi.findById(id);
@@ -167,7 +167,7 @@ public Map<String, Object> findFechaDeIngreso(@PathVariable("id") Integer id) {
 
 		if (fecha.isPresent()) {
 			response.put("message", "Successful load");
-			response.put("data", parseDateHours(fecha.get().getFecha().toString()));
+			response.put("data", parseDateWithHours(fecha.get().getFecha().toString()));
 			response.put("success", true);
 			return response;
 		} else {
@@ -190,12 +190,13 @@ private String parseDate(Date date){
 	return dateString;
 
 }
-private String parseDateHours(String dateAsString){
+private String parseDateWithHours(String dateAsString){
 	SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     try {
 		Date date = dt.parse(dateAsString);
 		SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd");
         return (dt1.format(date));
+
 	} catch (ParseException e) {
 		e.printStackTrace();
 	}
