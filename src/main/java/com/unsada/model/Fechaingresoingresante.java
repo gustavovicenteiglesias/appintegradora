@@ -4,7 +4,10 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.Date;
 import java.util.List;
@@ -25,13 +28,14 @@ public class Fechaingresoingresante implements Serializable {
 	@Column(name="id_Fecha_Ingresante")
 	private Integer idFechaIngresante;
 
-	@Temporal(TemporalType.DATE)
+
+	@JsonProperty("fecha")
+	@JsonFormat(pattern="yyyy-mm-dd")
+	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
 	private Date fecha;
 
 	//bi-directional many-to-one association to Asistenciaingresante
-	@OneToMany(mappedBy="fechaingresoingresante")
-	@JsonManagedReference
-	private List<Asistenciaingresante> asistenciaingresantes;
+	
 
 	//bi-directional many-to-one association to Ingresante
 	@ManyToOne(optional = true)
@@ -40,6 +44,7 @@ public class Fechaingresoingresante implements Serializable {
 	private Ingresante ingresante;
 
 	public Fechaingresoingresante() {
+		super();
 	}
 
 	public Integer getIdFechaIngresante() {
@@ -57,29 +62,7 @@ public class Fechaingresoingresante implements Serializable {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	
-	public List<Asistenciaingresante> getAsistenciaingresantes() {
-		return this.asistenciaingresantes;
-	}
-
-	public void setAsistenciaingresantes(List<Asistenciaingresante> asistenciaingresantes) {
-		this.asistenciaingresantes = asistenciaingresantes;
-	}
-
-	public Asistenciaingresante addAsistenciaingresante(Asistenciaingresante asistenciaingresante) {
-		getAsistenciaingresantes().add(asistenciaingresante);
-		asistenciaingresante.setFechaingresoingresante(this);
-
-		return asistenciaingresante;
-	}
-
-	public Asistenciaingresante removeAsistenciaingresante(Asistenciaingresante asistenciaingresante) {
-		getAsistenciaingresantes().remove(asistenciaingresante);
-		asistenciaingresante.setFechaingresoingresante(null);
-
-		return asistenciaingresante;
-	}
-	
+		
 	public Ingresante getIngresante() {
 		return this.ingresante;
 	}

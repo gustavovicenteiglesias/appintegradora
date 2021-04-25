@@ -1,12 +1,16 @@
 package com.unsada.service;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.unsada.dao.FechaingresoingresanteDao;
 import com.unsada.model.Fechaingresoingresante;
+import com.unsada.model.Ingresante;
 @Service
 public class FechaingresoingresanteServiceImpl implements FechaingresoingresanteServiceApi {
 	@Autowired
@@ -77,4 +81,13 @@ public class FechaingresoingresanteServiceImpl implements Fechaingresoingresante
 
 	}
 
+	@Override
+	public void saveFechaIngresoIngresante(String date, Integer ingresante) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
 }
