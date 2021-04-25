@@ -30,8 +30,8 @@ public class Fechaingresoingresante implements Serializable {
 
 
 	@JsonProperty("fecha")
-	@JsonFormat(pattern="yyyy-mm-dd")
 	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date fecha;
 
 	//bi-directional many-to-one association to Asistenciaingresante

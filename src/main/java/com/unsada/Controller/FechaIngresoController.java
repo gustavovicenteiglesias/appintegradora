@@ -56,13 +56,16 @@ public class FechaIngresoController{
 		}
 
 	}
-	@GetMapping(value = "/find/all-ingresante/{idIngresante}")
+	@GetMapping(value = "/find/all/{idIngresante}")
 	public Map<String, Object> findAllFechaDeIngresoAndIngresante(@PathVariable(value = "idIngresante") Integer id) {
 		HashMap<String, Object> response = new HashMap<String, Object>();
 		try {
 			Optional<Ingresante> ingresante = ingresanteServiceApi.findById(id);
 			List<Fechaingresoingresante> todasLasFechas;
 			todasLasFechas = (List<Fechaingresoingresante>) fechaIngresoIngresanteServiceApi.findByIngresante(ingresante.get());
+			for(Fechaingresoingresante fecha : todasLasFechas){
+				System.out.println(fecha.getFecha());
+			}
 			response.put("message", "Successful load");
 			response.put("data",todasLasFechas);
 			response.put("success", true);
