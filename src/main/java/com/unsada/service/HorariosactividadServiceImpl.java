@@ -1,11 +1,14 @@
 package com.unsada.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.unsada.dao.HorariosactividadDao;
+import com.unsada.model.Actividad;
+import com.unsada.model.Aula;
 import com.unsada.model.Horariosactividad;
 @Service
 public class HorariosactividadServiceImpl implements HorariosactividadServiceApi {
@@ -75,6 +78,20 @@ public class HorariosactividadServiceImpl implements HorariosactividadServiceApi
 	public void deleteAll() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<Horariosactividad> findByActividad(Actividad actividad) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public List<Horariosactividad> findByActividadAndAula(Integer aula, Integer actividad) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

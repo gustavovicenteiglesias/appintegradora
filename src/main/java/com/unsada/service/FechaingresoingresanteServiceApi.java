@@ -18,6 +18,7 @@ import javax.transaction.Transactional;
 
 import com.unsada.model.Fechaingresoingresante;
 import com.unsada.model.Ingresante;
+
 @Component
 @Qualifier("service")
 public interface FechaingresoingresanteServiceApi extends CrudRepository<Fechaingresoingresante, Integer> {
