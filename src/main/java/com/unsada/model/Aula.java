@@ -30,7 +30,7 @@ public class Aula implements Serializable {
 	private List<Actividad> actividads;
 
 	//bi-directional many-to-one association to Edificio
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	@JoinColumn(name="edificio_idEdificio")
 	private Edificio edificioBean;
 
