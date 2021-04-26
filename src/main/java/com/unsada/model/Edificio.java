@@ -32,7 +32,7 @@ public class Edificio implements Serializable {
 
 	//bi-directional many-to-one association to Aula
 	@OneToMany(mappedBy="edificioBean")
-	@JsonIgnore
+	
 	private List<Aula> aulas;
 
 	//bi-directional many-to-one association to Sede
