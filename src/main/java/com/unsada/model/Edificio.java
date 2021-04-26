@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
@@ -31,10 +32,12 @@ public class Edificio implements Serializable {
 
 	//bi-directional many-to-one association to Aula
 	@OneToMany(mappedBy="edificioBean")
+	@JsonIgnore
 	private List<Aula> aulas;
 
 	//bi-directional many-to-one association to Sede
 	@ManyToOne(optional = false)
+	@JsonBackReference
 	private Sede sede;
 
 	public Edificio() {
@@ -71,7 +74,7 @@ public class Edificio implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	@JsonManagedReference
+	
 	public List<Aula> getAulas() {
 		return aulas;
 	}
@@ -79,7 +82,7 @@ public class Edificio implements Serializable {
 	public void setAulas(List<Aula> aulas) {
 		this.aulas = aulas;
 	}
-	@JsonBackReference
+	
 	public Sede getSede() {
 		return sede;
 	}
