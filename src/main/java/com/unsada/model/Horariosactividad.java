@@ -59,16 +59,19 @@ public class Horariosactividad implements Serializable {
 	//bi-directional many-to-one association to Asistenciaingresante
 	
 	@OneToMany(mappedBy="horariosactividad")
+	@JsonManagedReference(value="asistencia-horariosactividad")
 	private List<Asistenciaingresante> asistenciaingresantes;
 
 	//bi-directional many-to-one association to Fecha
 	
 	@OneToMany(mappedBy="horariosactividad")
+	@JsonManagedReference(value="fecha-horariosactividad")
 	private List<Fecha> fechas;
 
 	//bi-directional many-to-one association to Actividad
 	
-	@ManyToOne
+	@ManyToOne(optional = true )
+	@JsonBackReference(value="asistencia-horariosactividad")
 	private Actividad actividad;
 
 	public Horariosactividad() {
@@ -153,7 +156,7 @@ public class Horariosactividad implements Serializable {
 	public void setViernes(byte viernes) {
 		this.viernes = viernes;
 	}
-	@JsonManagedReference
+	
 	public List<Asistenciaingresante> getAsistenciaingresantes() {
 		return this.asistenciaingresantes;
 	}
@@ -175,7 +178,7 @@ public class Horariosactividad implements Serializable {
 
 		return asistenciaingresante;
 	}
-	@JsonManagedReference
+	
 	public List<Fecha> getFechas() {
 		return this.fechas;
 	}
@@ -197,7 +200,7 @@ public class Horariosactividad implements Serializable {
 
 		return fecha;
 	}
-	@JsonBackReference
+	
 	public Actividad getActividad() {
 		return this.actividad;
 	}

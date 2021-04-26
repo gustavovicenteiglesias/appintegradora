@@ -32,13 +32,15 @@ public class Actividad implements Serializable {
 	private Date fechaInicio;
 
 	//bi-directional many-to-one association to Aula
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	@JoinColumn(name = "idAula")
+	@JsonBackReference
 	private Aula aula;
 
 	//bi-directional many-to-one association to Horariosactividad
 	
 	@OneToMany(mappedBy="actividad")
+	@JsonManagedReference(value="asistencia-horariosactividad")
 	private List<Horariosactividad> horariosactividads;
 
 	public Actividad() {
@@ -75,7 +77,7 @@ public class Actividad implements Serializable {
 	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
-	@JsonBackReference
+	
 	public Aula getAula() {
 		return this.aula;
 	}
@@ -83,7 +85,7 @@ public class Actividad implements Serializable {
 	public void setAula(Aula aula) {
 		this.aula = aula;
 	}
-	@JsonManagedReference
+	
 	public List<Horariosactividad> getHorariosactividads() {
 		return this.horariosactividads;
 	}

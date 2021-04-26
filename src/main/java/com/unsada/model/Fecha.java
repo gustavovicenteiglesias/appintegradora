@@ -26,7 +26,8 @@ public class Fecha implements Serializable {
 	private Date fecha;
 
 	//bi-directional many-to-one association to Horariosactividad
-	@ManyToOne
+	@ManyToOne(optional = true)
+	@JsonBackReference(value="fecha-horariosactividad")
 	private Horariosactividad horariosactividad;
 
 	public Fecha() {
@@ -47,7 +48,7 @@ public class Fecha implements Serializable {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	@JsonBackReference
+	
 	public Horariosactividad getHorariosactividad() {
 		return this.horariosactividad;
 	}

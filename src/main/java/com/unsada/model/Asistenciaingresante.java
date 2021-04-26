@@ -32,7 +32,7 @@ public class Asistenciaingresante implements Serializable {
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "id_fecha_ingresante")
-	@JsonBackReference(value="asistencia-fechaingresoingresante")
+	//@JsonBackReference(value="asistencia-fechaingresoingresante")
 	private Fechaingresoingresante fechaingresoingresante;
 
 	//bi-directional many-to-one association to Horariosactividad

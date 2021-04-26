@@ -36,7 +36,7 @@ public class Edificio implements Serializable {
 	private List<Aula> aulas;
 
 	//bi-directional many-to-one association to Sede
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	@JsonBackReference
 	private Sede sede;
 
