@@ -52,7 +52,7 @@ public Map<String, Object> dataClase(@PathVariable("id") Integer id) {
 	try {
 
 		Optional<Aula> clase = aulaServiceApi.findById(id);
-
+		System.out.println(clase.get().getCapacidad()+"Capacidad");
 		if (clase.isPresent()) {
 			response.put("message", "Successful load");
 			response.put("data", clase);

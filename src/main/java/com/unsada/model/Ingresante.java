@@ -40,7 +40,7 @@ public class Ingresante implements Serializable {
 
 	//bi-directional many-to-one association to Fechaingresoingresante
 	@OneToMany(mappedBy="ingresante")
-	@JsonIgnore
+	@JsonManagedReference(value="ingresante-fecha")
 	private List<Fechaingresoingresante> fechaingresoingresantes;
 
 	
