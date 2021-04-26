@@ -57,6 +57,31 @@ public class HorarioActividadController{
         }
 
     }
+    @GetMapping(value = "/find/{id}")
+	public Map<String, Object> findFechaDeIngresoPorId(@PathVariable("id") Integer id) {
+		HashMap<String, Object> response = new HashMap<String, Object>();
+
+		try {
+			Optional<Horariosactividad> horario = horariosServiceApi.findById(id);
+
+			if (horario.isPresent()) {
+				response.put("message", "Successful load");
+				response.put("data", horario);
+				response.put("success", true);
+				return response;
+			} else {
+				response.put("message", "Not found data");
+				response.put("data", null);
+				response.put("success", false);
+				return response;
+			}
+		} catch (Exception e) {
+			response.put("message", "" + e.getMessage());
+			response.put("success", false);
+			return response;
+		}
+	}
+
     @GetMapping(value = "/por-actividad/{idActividad}")
     public Map<String, Object> listhorariosPorClase(@PathVariable (value = "idActividad") int idActividad) {
     HashMap<String, Object> response = new HashMap<String, Object>();
