@@ -8,15 +8,20 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.unsada.model.Actividad;
 import com.unsada.model.Aula;
 import com.unsada.model.Horariosactividad;
+import com.unsada.model.Sede;
 import com.unsada.service.ActividadServiceImpl;
 import com.unsada.service.ActividadserviceApi;
 import com.unsada.service.AulaServiceApi;
@@ -38,6 +43,20 @@ public class HorarioActividadController{
     @Qualifier("aulaService")
     AulaServiceApi aulaService;
 
+
+    @PostMapping(value = "/create/{idActividad}")
+    public ResponseEntity<String> create(@RequestBody Horariosactividad data, @PathVariable("idActividad") Integer idActividad) {
+        Optional<Actividad> actividad = actividadService.findById(idActividad);
+        try {
+            data.setActividad(actividad.get());
+            horariosServiceApi.save(data);
+            return new ResponseEntity<>("Save successful ", HttpStatus.OK);
+        } catch (Exception e) {
+            
+            return new ResponseEntity<>("" + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
     @GetMapping(value = "/all")
     public Map<String, Object> listhorarios() {
     HashMap<String, Object> response = new HashMap<String, Object>();
@@ -63,7 +82,7 @@ public class HorarioActividadController{
 
 		try {
 			Optional<Horariosactividad> horario = horariosServiceApi.findById(id);
-
+            System.out.println("hora ini:" + horario.get().getHoraInicio());
 			if (horario.isPresent()) {
 				response.put("message", "Successful load");
 				response.put("data", horario);
@@ -91,9 +110,16 @@ public class HorarioActividadController{
             Optional<Actividad> actividad = actividadService.findById(idActividad);
             System.out.println(actividad.toString());
             horarioData = (List<Horariosactividad>) horariosServiceApi.findByActividad(actividad.get());
-            response.put("message", "Successful load");
-            response.put("data",horarioData);
-            response.put("success", true);
+            if(!horarioData.isEmpty()){
+                response.put("message", "Successful load");
+                response.put("data",horarioData);
+                response.put("success", true);
+            }else{
+                response.put("message", "No data available");
+                response.put("data", horarioData);
+                response.put("success", true);
+            }
+           
             return response;
 
         } catch (Exception e) {
@@ -109,9 +135,6 @@ public class HorarioActividadController{
 
         try {
             List<Horariosactividad> horarioData;
-            Optional<Actividad> actividad = actividadService.findById(idActividad);
-            Optional<Aula> aula = aulaService.findById(idAula);
-            System.out.println(aula.toString());
             horarioData = (List<Horariosactividad>) horariosServiceApi.findByActividadAndAula(idActividad, idAula);
             System.out.println(horarioData.toString());
             if(!horarioData.isEmpty()){

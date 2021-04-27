@@ -82,7 +82,6 @@ public Map<String, Object> dataClase(@PathVariable("id") Integer id) {
 public ResponseEntity<String> create(@RequestBody Actividad data) {
 
 	try {
-		
 		actividadserviceApi.save(data);
 		return new ResponseEntity<>("Save successful ", HttpStatus.OK);
 	} catch (Exception e) {

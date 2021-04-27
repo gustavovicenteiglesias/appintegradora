@@ -4,8 +4,11 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.sql.Time;
 import java.util.List;
@@ -26,8 +29,14 @@ public class Horariosactividad implements Serializable {
 	private int idHorarioActividad;
 
 
+	@JsonProperty("horaFin")
+	@JsonDeserialize(using = CustomJsonTimeDeserializer.class)
+	@JsonFormat(pattern="hh:mm:ss")
 	private Time horaFin;
 
+	@JsonProperty("horaInicio")
+	@JsonDeserialize(using = CustomJsonTimeDeserializer.class)
+	@JsonFormat(pattern="HH:MM:SS")
 	private Time horaInicio;
 
 	
