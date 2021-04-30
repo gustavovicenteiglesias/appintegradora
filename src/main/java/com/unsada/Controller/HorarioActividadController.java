@@ -35,6 +35,7 @@ import com.unsada.service.HorariosactividadServiceImpl;
 @CrossOrigin("*")
 public class HorarioActividadController{
 	@Autowired
+    @Qualifier("horariosService")
 	HorariosactividadServiceApi horariosServiceApi;
 
     @Autowired
