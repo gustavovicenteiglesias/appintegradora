@@ -1,5 +1,6 @@
 package com.unsada.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,26 @@ public class AsistenciaIngresanteImpl implements AsistenciaIngresanteApi {
 	public void deleteAll() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<Asistenciaingresante> findByIngresante(Integer idIngresante) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Asistenciaingresante> findByIngresanteAndActividad(Integer idIngresante, Integer idActividad) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<Asistenciaingresante> findByIngresanteAndActividadAndAula(Integer idIngresante, Integer idActividad,
+			Integer idAula) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
