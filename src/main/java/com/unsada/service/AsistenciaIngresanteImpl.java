@@ -98,4 +98,11 @@ public class AsistenciaIngresanteImpl implements AsistenciaIngresanteApi {
 		return null;
 	}
 
+	@Override
+	public List<Asistenciaingresante> findByIngresanteAndActividadAndAulaAndHorario(Integer idIngresante,
+			Integer idActividad, Integer idAula, Integer idHorario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

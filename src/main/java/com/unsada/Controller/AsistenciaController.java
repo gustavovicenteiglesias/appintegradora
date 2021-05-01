@@ -50,7 +50,6 @@ public class AsistenciaController {
     public ResponseEntity<String> create(@RequestBody Asistenciaingresante data, @PathVariable("idFechaIngreso") Integer idFechaIngreso,  @PathVariable("idHorarioActividad") Integer idHorarioActividad) {
         Optional<Horariosactividad> horario = horariosService.findById(idHorarioActividad);
         Optional<Fechaingresoingresante> fechaIngreso = fechaIngresoService.findById(idFechaIngreso);
-
         try {
             data.setHorariosactividad(horario.get());
             data.setFechaingresoingresante(fechaIngreso.get());
@@ -134,5 +133,24 @@ public class AsistenciaController {
       return response;
     }
   }
+
+  @GetMapping(value = "/por-ingresante-actividad-aula-horario/{idIngresante}/{idActividad}/{idAula}/{idHorario}")
+  public Map<String, Object> listAsistenciaPorIngresanteAndActividadAndAulaAndHorario(@PathVariable ("idIngresante") int idIngresante,@PathVariable ("idActividad") int idActividad, @PathVariable ("idAula") int idAula,  @PathVariable ("idHorario") int idHorario ) {
+  HashMap<String, Object> response = new HashMap<String, Object>();
+  try {
+    List<Asistenciaingresante> asistenciaData;
+    asistenciaData = (List<Asistenciaingresante>) asistenciaIngresanteApi.findByIngresanteAndActividadAndAulaAndHorario(idIngresante, idActividad, idAula, idHorario);
+    response.put("message", "Successful load");
+    response.put("data",asistenciaData);
+    response.put("success", true);
+    return response;
+    } 
+    catch (Exception e) {
+      response.put("message", e.getMessage());
+      response.put("success ", false);
+      return response;
+    }
+  }
+
 
 }
