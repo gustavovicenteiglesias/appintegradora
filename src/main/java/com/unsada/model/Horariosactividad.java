@@ -4,10 +4,10 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import java.sql.Time;
+
+
 import java.util.List;
 
 
@@ -22,57 +22,43 @@ public class Horariosactividad implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_horario_actividad")
 	private int idHorarioActividad;
 
-
-	private Time horaFin;
-
-	private Time horaInicio;
-
-	
-
-	@Column(name="Lunes")
-	private byte lunes;
-
-	@Column(name="Martes")
-	private byte martes;
-
-	@Column(name="Miercoles")
-	private byte miercoles;
-
-	@Column(name="Jueves")
-	private byte jueves;
-
-	@Column(name="Viernes")
-	private byte viernes;
-
-	@Column(name="Sabado")
-	private byte sabado;
-
-	@Column(name="Domingo")
 	private byte domingo;
 
-	
-	
+	private byte jueves;
+
+	private byte lunes;
+
+	private byte martes;
+
+	private byte miercoles;
+
+	private byte sabado;
+
+	private byte viernes;
 
 	//bi-directional many-to-one association to Asistenciaingresante
-	
 	@OneToMany(mappedBy="horariosactividad")
 	@JsonManagedReference(value="asistencia-horariosactividad")
 	private List<Asistenciaingresante> asistenciaingresantes;
 
 	//bi-directional many-to-one association to Fecha
-	
 	@OneToMany(mappedBy="horariosactividad")
 	@JsonManagedReference(value="fecha-horariosactividad")
 	private List<Fecha> fechas;
 
 	//bi-directional many-to-one association to Actividad
-	
-	@ManyToOne(optional = true )
+	@ManyToOne
 	@JsonBackReference(value="asistencia-horariosactividad")
 	private Actividad actividad;
+
+	//bi-directional many-to-one association to HorasactividadFecha
+	@ManyToOne
+	@JsonBackReference("horarios-hora")
+	@JoinColumn(name="horasactividad_fechas_id_horas")
+	private HorasactividadFecha horasactividadFecha;
 
 	public Horariosactividad() {
 	}
@@ -91,22 +77,6 @@ public class Horariosactividad implements Serializable {
 
 	public void setDomingo(byte domingo) {
 		this.domingo = domingo;
-	}
-
-	public Time getHoraFin() {
-		return this.horaFin;
-	}
-
-	public void setHoraFin(Time horaFin) {
-		this.horaFin = horaFin;
-	}
-
-	public Time getHoraInicio() {
-		return this.horaInicio;
-	}
-
-	public void setHoraInicio(Time horaInicio) {
-		this.horaInicio = horaInicio;
 	}
 
 	public byte getJueves() {
@@ -156,7 +126,7 @@ public class Horariosactividad implements Serializable {
 	public void setViernes(byte viernes) {
 		this.viernes = viernes;
 	}
-	
+
 	public List<Asistenciaingresante> getAsistenciaingresantes() {
 		return this.asistenciaingresantes;
 	}
@@ -178,7 +148,7 @@ public class Horariosactividad implements Serializable {
 
 		return asistenciaingresante;
 	}
-	
+
 	public List<Fecha> getFechas() {
 		return this.fechas;
 	}
@@ -200,13 +170,21 @@ public class Horariosactividad implements Serializable {
 
 		return fecha;
 	}
-	
+
 	public Actividad getActividad() {
 		return this.actividad;
 	}
 
 	public void setActividad(Actividad actividad) {
 		this.actividad = actividad;
+	}
+
+	public HorasactividadFecha getHorasactividadFecha() {
+		return this.horasactividadFecha;
+	}
+
+	public void setHorasactividadFecha(HorasactividadFecha horasactividadFecha) {
+		this.horasactividadFecha = horasactividadFecha;
 	}
 
 }

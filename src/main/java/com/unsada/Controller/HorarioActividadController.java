@@ -17,11 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.unsada.model.Actividad;
 import com.unsada.model.Aula;
 import com.unsada.model.Horariosactividad;
-import com.unsada.service.ActividadServiceImpl;
+
+
 import com.unsada.service.ActividadserviceApi;
 import com.unsada.service.AulaServiceApi;
 import com.unsada.service.HorariosactividadServiceApi;
-import com.unsada.service.HorariosactividadServiceImpl;
+
 
 @RestController
 @RequestMapping(value = "/api/horario")
@@ -44,7 +45,7 @@ public class HorarioActividadController{
 
         try {
             List<Horariosactividad> horarioData;
-            horarioData = (List<Horariosactividad>) horariosServiceApi.findAll();
+            horarioData =  (List<Horariosactividad>) horariosServiceApi.findAll();
             response.put("message", "Successful load");
             response.put("data",horarioData);
             response.put("success", true);
