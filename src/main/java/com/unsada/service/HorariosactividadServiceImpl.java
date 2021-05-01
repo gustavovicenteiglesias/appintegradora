@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.unsada.dao.HorariosactividadDao;
 import com.unsada.model.Actividad;
-import com.unsada.model.Aula;
+
 import com.unsada.model.Horariosactividad;
+
 @Service
 public class HorariosactividadServiceImpl implements HorariosactividadServiceApi {
 	@Autowired
 	HorariosactividadDao horariosactividadDao;
+
 	@Override
 	public <S extends Horariosactividad> S save(S entity) {
 		// TODO Auto-generated method stub
@@ -29,25 +31,25 @@ public class HorariosactividadServiceImpl implements HorariosactividadServiceApi
 	@Override
 	public Optional<Horariosactividad> findById(Integer id) {
 		// TODO Auto-generated method stub
-		return horariosactividadDao.findById(id);
+		return null;
 	}
 
 	@Override
 	public boolean existsById(Integer id) {
 		// TODO Auto-generated method stub
-		return horariosactividadDao.existsById(id);
+		return false;
 	}
 
 	@Override
 	public Iterable<Horariosactividad> findAll() {
 		// TODO Auto-generated method stub
-		return horariosactividadDao.findAll();
+		return null;
 	}
 
 	@Override
 	public Iterable<Horariosactividad> findAllById(Iterable<Integer> ids) {
 		// TODO Auto-generated method stub
-		return horariosactividadDao.findAllById(ids);
+		return null;
 	}
 
 	@Override
@@ -59,25 +61,25 @@ public class HorariosactividadServiceImpl implements HorariosactividadServiceApi
 	@Override
 	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void delete(Horariosactividad entity) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void deleteAll(Iterable<? extends Horariosactividad> entities) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void deleteAll() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -86,12 +88,11 @@ public class HorariosactividadServiceImpl implements HorariosactividadServiceApi
 		return null;
 	}
 
-
-
 	@Override
-	public List<Horariosactividad> findByActividadAndAula(Integer aula, Integer actividad) {
+	public List<Horariosactividad> findByActividadAndAula(Integer actividad, Integer aula) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 }

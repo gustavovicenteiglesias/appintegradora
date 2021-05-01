@@ -4,8 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 
 /**
@@ -27,6 +26,8 @@ public class Asistenciaingresante implements Serializable {
 	private byte habilitado;
 
 	private byte presente;
+	
+	private String qr;
 
 	//bi-directional many-to-one association to Fechaingresoingresante
 	
@@ -80,13 +81,21 @@ public class Asistenciaingresante implements Serializable {
 		return horariosactividad;
 	}
 
-	public void setHorariosactividad(Horariosactividad horariosactividad) {
-		this.horariosactividad = horariosactividad;
+	public void setHorariosactividad(Horariosactividad horariosactividad2) {
+		this.horariosactividad = horariosactividad2;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+	public String getQr() {
+		return qr;
+	}
+
+	public void setQr(String qr) {
+		this.qr = qr;
+	}
+	
 	
 }

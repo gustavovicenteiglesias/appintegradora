@@ -28,7 +28,7 @@ import com.unsada.service.ActividadServiceImpl;
 import com.unsada.service.ActividadserviceApi;
 import com.unsada.service.AulaServiceApi;
 import com.unsada.service.HorariosactividadServiceApi;
-import com.unsada.service.HorariosactividadServiceImpl;
+
 
 @RestController
 @RequestMapping(value = "/api/horario")
@@ -101,7 +101,7 @@ public class HorarioActividadController{
 
         try {
             List<Horariosactividad> horarioData;
-            horarioData = (List<Horariosactividad>) horariosServiceApi.findAll();
+            horarioData =  (List<Horariosactividad>) horariosServiceApi.findAll();
             response.put("message", "Successful load");
             response.put("data",horarioData);
             response.put("success", true);
@@ -120,7 +120,6 @@ public class HorarioActividadController{
 
 		try {
 			Optional<Horariosactividad> horario = horariosServiceApi.findById(id);
-            System.out.println("hora ini:" + horario.get().getHoraInicio());
 			if (horario.isPresent()) {
 				response.put("message", "Successful load");
 				response.put("data", horario);
