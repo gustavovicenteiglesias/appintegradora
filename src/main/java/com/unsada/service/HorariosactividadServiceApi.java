@@ -1,6 +1,7 @@
 package com.unsada.service;
 
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -16,7 +17,7 @@ import com.unsada.model.Actividad;
 
 import com.unsada.model.Horariosactividad;
 
-@Primary
+@Qualifier("horariosService")
 public interface HorariosactividadServiceApi extends CrudRepository<Horariosactividad, Integer> {
 
   public List<Horariosactividad> findByActividad(Actividad actividad);
