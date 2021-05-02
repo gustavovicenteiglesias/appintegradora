@@ -151,6 +151,101 @@ public class AsistenciaController {
       return response;
     }
   }
+  
+  @GetMapping(value = "/find/{id}")
+  public Map<String, Object> dataClase(@PathVariable("id") Integer id) {
+  	HashMap<String, Object> response = new HashMap<String, Object>();
 
+  	try {
 
+  		Optional<Asistenciaingresante> clase = asistenciaIngresanteApi.findById(id);
+
+  		if (clase.isPresent()) {
+  			response.put("message", "Successful load");
+  			response.put("data", clase);
+  			response.put("success", true);
+  			return response;
+  		} else {
+  			response.put("message", "Not found data");
+  			response.put("data", null);
+  			response.put("success", false);
+  			return response;
+  		}
+
+  	} catch (Exception e) {
+  		response.put("message", "" + e.getMessage());
+  		response.put("success", false);
+  		return response;
+  	}
+  }
+  @GetMapping(value = "/find/uuid/{id}")
+  public Map<String, Object> dataClase(@PathVariable("id") String id) {
+  	HashMap<String, Object> response = new HashMap<String, Object>();
+
+  	try {
+
+  		Optional<Asistenciaingresante> clase = asistenciaIngresanteApi.findByQr(id);
+
+  		if (clase.isPresent()) {
+  			response.put("message", "Successful load");
+  			response.put("data", clase);
+  			response.put("success", true);
+  			return response;
+  		} else {
+  			response.put("message", "Not found data");
+  			response.put("data", null);
+  			response.put("success", false);
+  			return response;
+  		}
+
+  	} catch (Exception e) {
+  		response.put("message", "" + e.getMessage());
+  		response.put("success", false);
+  		return response;
+  	}
+  }
+  @PutMapping(value = "/update/{id}/{uuid}")
+
+  public Map<String, Object> updateuuid(@PathVariable("id") Integer id,@PathVariable("uuid") String uuid, @RequestBody Asistenciaingresante data) {
+
+  	HashMap<String, Object> response = new HashMap<String, Object>();
+
+  	try {
+  		data.setIdAsistenciaIngresante(id);
+  		data.setHabilitado(data.getHabilitado());
+  		
+  		data.setFechaingresoingresante(data.getFechaingresoingresante());
+  		data.setHorariosactividad(data.getHorariosactividad());
+  		data.setQr(uuid);
+  		asistenciaIngresanteApi.save(data);
+  		response.put("message", "Successful update");
+  		response.put("success", true);
+  		return response;
+  	} catch (Exception e) {
+  		response.put("message", e.getMessage());
+  		response.put("success", false);
+  		return response;
+  	}
+
+  }
+  @PutMapping(value = "/update/{id}")
+
+  public Map<String, Object> updateuuid(@PathVariable("id") Integer id, @RequestBody Asistenciaingresante data) {
+
+  	HashMap<String, Object> response = new HashMap<String, Object>();
+
+  	try {
+  		data.setIdAsistenciaIngresante(id);
+  		
+  		asistenciaIngresanteApi.save(data);
+  		response.put("message", "Successful update");
+  		response.put("success", true);
+  		return response;
+  	} catch (Exception e) {
+  		response.put("message", e.getMessage());
+  		response.put("success", false);
+  		return response;
+  	}
+
+  }
 }

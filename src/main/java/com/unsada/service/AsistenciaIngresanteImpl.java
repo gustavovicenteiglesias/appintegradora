@@ -105,4 +105,11 @@ public class AsistenciaIngresanteImpl implements AsistenciaIngresanteApi {
 		return null;
 	}
 
+	@Override
+	public Optional<Asistenciaingresante> findByQr(String qr) {
+		// TODO Auto-generated method stub
+		return asistenciaIngresantesDao.findByQr(qr);
+	}
+
+	
 }

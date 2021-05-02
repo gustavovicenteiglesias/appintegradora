@@ -87,6 +87,8 @@ public Map<String, Object> dataClase(@PathVariable("id") Integer id) {
 	}
 }
 
+
+
 @PostMapping(value = "/create")
 public ResponseEntity<String> create(@RequestBody Ingresante data) {
 
@@ -123,6 +125,9 @@ public Map<String, Object> update(@PathVariable("id") Integer id, @RequestBody I
 	}
 
 }
+
+
+
 @DeleteMapping(value = "/delete/{id}")
 
 public Map<String, Object> update(@PathVariable("id") Integer id) {

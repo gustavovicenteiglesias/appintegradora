@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -28,4 +29,7 @@ public interface AsistenciaIngresanteApi extends CrudRepository<Asistenciaingres
   
   @Query(value= FIND_BY_INGRESANTE_AND_ACTIVIDAD_AND_AULA_AND_HORARIO, nativeQuery = true)
   public List<Asistenciaingresante> findByIngresanteAndActividadAndAulaAndHorario(@Param(value = "idIngresante") Integer idIngresante, @Param(value = "idActividad") Integer idActividad, @Param(value = "idAula") Integer idAula, @Param(value = "idHorario") Integer idHorario);
-}
+
+  @Query(value= "SELECT * FROM `asistenciaingresante` WHERE qr=?", nativeQuery = true)
+  Optional<Asistenciaingresante> findByQr (String qr);
+} 
