@@ -21,14 +21,24 @@ public class HorasactividadFecha implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_horas")
-	private int idHoras;
+	@Column(name="id_dias")
+	private int idDias;
 
-	@Column(name="hora_inicio")
-	private Time horaInicio;
 
-	@Column(name="horasactividad_fechascol")
-	private Time horasactividadFechascol;
+	
+	private byte domingo;
+
+	private byte jueves;
+
+	private byte lunes;
+
+	private byte martes;
+
+	private byte miercoles;
+
+	private byte sabado;
+
+	private byte viernes;
 
 	//bi-directional many-to-one association to Horariosactividad
 	@OneToMany(mappedBy="horasactividadFecha")
@@ -39,50 +49,82 @@ public class HorasactividadFecha implements Serializable {
 	public HorasactividadFecha() {
 	}
 
-	public int getIdHoras() {
-		return this.idHoras;
+	public int getIdDias() {
+		return idDias;
 	}
 
-	public void setIdHoras(int idHoras) {
-		this.idHoras = idHoras;
+	public void setIdDias(int idHoras) {
+		this.idDias = idHoras;
 	}
 
-	public Time getHoraInicio() {
-		return this.horaInicio;
+	public byte getDomingo() {
+		return domingo;
 	}
 
-	public void setHoraInicio(Time horaInicio) {
-		this.horaInicio = horaInicio;
+	public void setDomingo(byte domingo) {
+		this.domingo = domingo;
 	}
 
-	public Time getHorasactividadFechascol() {
-		return this.horasactividadFechascol;
+	public byte getJueves() {
+		return jueves;
 	}
 
-	public void setHorasactividadFechascol(Time horasactividadFechascol) {
-		this.horasactividadFechascol = horasactividadFechascol;
+	public void setJueves(byte jueves) {
+		this.jueves = jueves;
+	}
+
+	public byte getLunes() {
+		return lunes;
+	}
+
+	public void setLunes(byte lunes) {
+		this.lunes = lunes;
+	}
+
+	public byte getMartes() {
+		return martes;
+	}
+
+	public void setMartes(byte martes) {
+		this.martes = martes;
+	}
+
+	public byte getMiercoles() {
+		return miercoles;
+	}
+
+	public void setMiercoles(byte miercoles) {
+		this.miercoles = miercoles;
+	}
+
+	public byte getSabado() {
+		return sabado;
+	}
+
+	public void setSabado(byte sabado) {
+		this.sabado = sabado;
+	}
+
+	public byte getViernes() {
+		return viernes;
+	}
+
+	public void setViernes(byte viernes) {
+		this.viernes = viernes;
 	}
 
 	public List<Horariosactividad> getHorariosactividads() {
-		return this.horariosactividads;
+		return horariosactividads;
 	}
 
 	public void setHorariosactividads(List<Horariosactividad> horariosactividads) {
 		this.horariosactividads = horariosactividads;
 	}
 
-	public Horariosactividad addHorariosactividad(Horariosactividad horariosactividad) {
-		getHorariosactividads().add(horariosactividad);
-		horariosactividad.setHorasactividadFecha(this);
-
-		return horariosactividad;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
-	public Horariosactividad HorariosactividadremoveHorariosactividad(Horariosactividad horariosactividad) {
-		getHorariosactividads().remove(horariosactividad);
-		horariosactividad.setHorasactividadFecha(null);
-
-		return horariosactividad;
-	}
+	
 
 }

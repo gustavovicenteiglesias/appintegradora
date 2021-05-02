@@ -1,6 +1,8 @@
 package com.unsada.model;
 
 import java.io.Serializable;
+import java.sql.Time;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -22,19 +24,13 @@ public class Horariosactividad implements Serializable {
 	@Column(name="id_horario_actividad")
 	private int idHorarioActividad;
 
-	private byte domingo;
+	
+	
+	@Column(name="hora_inicio")
+	private Time horaInicio;
 
-	private byte jueves;
-
-	private byte lunes;
-
-	private byte martes;
-
-	private byte miercoles;
-
-	private byte sabado;
-
-	private byte viernes;
+	@Column(name="hora_fin")
+	private Time horasFin;
 
 	//bi-directional many-to-one association to Asistenciaingresante
 	@OneToMany(mappedBy="horariosactividad")
@@ -61,115 +57,49 @@ public class Horariosactividad implements Serializable {
 	}
 
 	public int getIdHorarioActividad() {
-		return this.idHorarioActividad;
+		return idHorarioActividad;
 	}
 
 	public void setIdHorarioActividad(int idHorarioActividad) {
 		this.idHorarioActividad = idHorarioActividad;
 	}
 
-	public byte getDomingo() {
-		return this.domingo;
+	public Time getHoraInicio() {
+		return horaInicio;
 	}
 
-	public void setDomingo(byte domingo) {
-		this.domingo = domingo;
+	public void setHoraInicio(Time horaInicio) {
+		this.horaInicio = horaInicio;
 	}
 
-	public byte getJueves() {
-		return this.jueves;
+	
+
+	public Time getHorasFin() {
+		return horasFin;
 	}
 
-	public void setJueves(byte jueves) {
-		this.jueves = jueves;
-	}
-
-	public byte getLunes() {
-		return this.lunes;
-	}
-
-	public void setLunes(byte lunes) {
-		this.lunes = lunes;
-	}
-
-	public byte getMartes() {
-		return this.martes;
-	}
-
-	public void setMartes(byte martes) {
-		this.martes = martes;
-	}
-
-	public byte getMiercoles() {
-		return this.miercoles;
-	}
-
-	public void setMiercoles(byte miercoles) {
-		this.miercoles = miercoles;
-	}
-
-	public byte getSabado() {
-		return this.sabado;
-	}
-
-	public void setSabado(byte sabado) {
-		this.sabado = sabado;
-	}
-
-	public byte getViernes() {
-		return this.viernes;
-	}
-
-	public void setViernes(byte viernes) {
-		this.viernes = viernes;
+	public void setHorasFin(Time horasFin) {
+		this.horasFin = horasFin;
 	}
 
 	public List<Asistenciaingresante> getAsistenciaingresantes() {
-		return this.asistenciaingresantes;
+		return asistenciaingresantes;
 	}
 
 	public void setAsistenciaingresantes(List<Asistenciaingresante> asistenciaingresantes) {
 		this.asistenciaingresantes = asistenciaingresantes;
 	}
 
-	public Asistenciaingresante addAsistenciaingresante(Asistenciaingresante asistenciaingresante) {
-		getAsistenciaingresantes().add(asistenciaingresante);
-		asistenciaingresante.setHorariosactividad(this);
-
-		return asistenciaingresante;
-	}
-
-	public Asistenciaingresante removeAsistenciaingresante(Asistenciaingresante asistenciaingresante) {
-		getAsistenciaingresantes().remove(asistenciaingresante);
-		asistenciaingresante.setHorariosactividad(null);
-
-		return asistenciaingresante;
-	}
-
 	public List<Fecha> getFechas() {
-		return this.fechas;
+		return fechas;
 	}
 
 	public void setFechas(List<Fecha> fechas) {
 		this.fechas = fechas;
 	}
 
-	public Fecha addFecha(Fecha fecha) {
-		getFechas().add(fecha);
-		fecha.setHorariosactividad(this);
-
-		return fecha;
-	}
-
-	public Fecha removeFecha(Fecha fecha) {
-		getFechas().remove(fecha);
-		fecha.setHorariosactividad(null);
-
-		return fecha;
-	}
-
 	public Actividad getActividad() {
-		return this.actividad;
+		return actividad;
 	}
 
 	public void setActividad(Actividad actividad) {
@@ -177,11 +107,16 @@ public class Horariosactividad implements Serializable {
 	}
 
 	public HorasactividadFecha getHorasactividadFecha() {
-		return this.horasactividadFecha;
+		return horasactividadFecha;
 	}
 
 	public void setHorasactividadFecha(HorasactividadFecha horasactividadFecha) {
 		this.horasactividadFecha = horasactividadFecha;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 }
