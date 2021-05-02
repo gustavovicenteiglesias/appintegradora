@@ -47,13 +47,13 @@ public class Horariosactividad implements Serializable {
 	private List<Fecha> fechas;
 
 	//bi-directional many-to-one association to Actividad
-	@ManyToOne
+	@ManyToOne(optional = true)
 	@JsonBackReference(value="asistencia-horariosactividad")
 	private Actividad actividad;
 
 	//bi-directional many-to-one association to HorasactividadFecha
-	@ManyToOne
-	@JsonManagedReference(("horarios-hora"))
+	@ManyToOne(optional = true)
+	@JsonBackReference("horarios-hora")
 	@JoinColumn(name="horasactividad_fechas_id_horas")
 	private HorasactividadFecha horasactividadFecha;
 
