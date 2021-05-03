@@ -19,7 +19,7 @@ import java.util.List;
 @NamedQuery(name="HorasactividadFecha.findAll", query="SELECT h FROM HorasactividadFecha h")
 public class HorasactividadFecha implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Id
 	@Column(name="id_dias")
 	private int idDias;
