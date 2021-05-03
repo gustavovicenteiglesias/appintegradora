@@ -262,7 +262,8 @@ private void nuevoRegistroDeAsistencia(int idFechaCreada, int idHorario){
 		asistenciaService.save(asistencia);
 
 	} catch (Exception e) {
-		System.out.println("Error creando el registro");
+		e.printStackTrace();
+		System.out.println("Error guardando el registro");
 	}
 
 }

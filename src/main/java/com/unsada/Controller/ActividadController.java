@@ -1,11 +1,17 @@
 package com.unsada.Controller;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,8 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.unsada.model.Actividad;
+import com.unsada.model.Fecha;
 import com.unsada.model.Ingresante;
 import com.unsada.service.ActividadserviceApi;
+import com.unsada.service.FechaServiceApi;
 import com.unsada.service.IngresanteServiceApi;
 
 @RestController
@@ -30,6 +38,9 @@ import com.unsada.service.IngresanteServiceApi;
 public class ActividadController {
 @Autowired
 ActividadserviceApi actividadserviceApi;
+@Autowired
+@Qualifier("registroDeFechaService")
+FechaServiceApi registroDeFechaService;
 
 @GetMapping(value = "/all")
 	public Map<String, Object> listclase() {
@@ -63,6 +74,7 @@ public Map<String, Object> dataClase(@PathVariable("id") Integer id) {
 		if (clase.isPresent()) {
 			response.put("message", "Successful load");
 			response.put("data", clase);
+			crearRegistrosDeFecha(clase.get().getFechaInicio(), clase.get().getFechaFin());
 			response.put("success", true);
 			return response;
 		} else {
@@ -126,6 +138,20 @@ public Map<String, Object> update(@PathVariable("id") Integer id) {
 		response.put("success", false);
 		return response;
 	}
+}
+public void crearRegistrosDeFecha(Date fechaInicio, Date fechaFin){
+	System.out.println("printing dates" + fechaInicio + fechaFin);
 
+	LocalDate inicio =fechaInicio.toInstant().atZone(ZoneId.of("America/Argentina/Catamarca")).toLocalDate();
+	LocalDate fin =fechaInicio.toInstant().atZone(ZoneId.of("America/Argentina/Catamarca")).toLocalDate();
+
+	System.out.println("ini: " + inicio);
+	System.out.println("here: " + inicio);
+
+
+	System.out.println("fin: " + fin);
+
+	Stream<LocalDate> dates = inicio.datesUntil(fin);
+	System.out.println(dates);
 }
 }
