@@ -42,6 +42,7 @@ public class HorasactividadFecha implements Serializable {
 
 	//bi-directional many-to-one association to Horariosactividad
 	@ManyToMany(mappedBy="horasactividadFecha")
+	@JsonBackReference("Horario_dias")
 	private List<Horariosactividad> horariosactividads;
 
 	public HorasactividadFecha() {
