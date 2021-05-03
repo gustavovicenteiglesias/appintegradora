@@ -48,75 +48,98 @@ public class Horariosactividad implements Serializable {
 	private Actividad actividad;
 
 	//bi-directional many-to-one association to HorasactividadFecha
-	@ManyToOne(optional = true)
+	/*@ManyToOne(optional = true)
 	@JsonBackReference("horarios-hora")
 	@JoinColumn(name="horasactividad_fechas_id_horas")
-	private HorasactividadFecha horasactividadFecha;
-
+	private HorasactividadFecha horasactividadFecha;*/
+	@JoinTable(
+	        name = "rel_horariosactividad_horariosfecha",
+	        joinColumns = @JoinColumn(name = "FK_HORARIOSACTIVIDAD", nullable = false),
+	        inverseJoinColumns = @JoinColumn(name="FK_HORARIOSFECHA", nullable = false)
+	    )
+	@ManyToMany(cascade = CascadeType.ALL)
+	
+	private List <HorasactividadFecha> horasactividadFecha;
+	
+	
 	public Horariosactividad() {
 	}
+
 
 	public int getIdHorarioActividad() {
 		return idHorarioActividad;
 	}
 
+
 	public void setIdHorarioActividad(int idHorarioActividad) {
 		this.idHorarioActividad = idHorarioActividad;
 	}
+
 
 	public Time getHoraInicio() {
 		return horaInicio;
 	}
 
+
 	public void setHoraInicio(Time horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	
 
 	public Time getHorasFin() {
 		return horasFin;
 	}
 
+
 	public void setHorasFin(Time horasFin) {
 		this.horasFin = horasFin;
 	}
+
 
 	public List<Asistenciaingresante> getAsistenciaingresantes() {
 		return asistenciaingresantes;
 	}
 
+
 	public void setAsistenciaingresantes(List<Asistenciaingresante> asistenciaingresantes) {
 		this.asistenciaingresantes = asistenciaingresantes;
 	}
+
 
 	public List<Fecha> getFechas() {
 		return fechas;
 	}
 
+
 	public void setFechas(List<Fecha> fechas) {
 		this.fechas = fechas;
 	}
+
 
 	public Actividad getActividad() {
 		return actividad;
 	}
 
+
 	public void setActividad(Actividad actividad) {
 		this.actividad = actividad;
 	}
 
-	public HorasactividadFecha getHorasactividadFecha() {
+
+	public List<HorasactividadFecha> getHorasactividadFecha() {
 		return horasactividadFecha;
 	}
 
-	public void setHorasactividadFecha(HorasactividadFecha horasactividadFecha) {
+
+	public void setHorasactividadFecha(List<HorasactividadFecha> horasactividadFecha) {
 		this.horasactividadFecha = horasactividadFecha;
 	}
+
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+	
 	
 }
