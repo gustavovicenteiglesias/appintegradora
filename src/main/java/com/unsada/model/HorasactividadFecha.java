@@ -41,6 +41,7 @@ public class HorasactividadFecha implements Serializable {
 	private byte viernes;
 
 	@ManyToMany(mappedBy="horasactividadFecha")
+	@JsonBackReference("Horario_dias")
 	private List<Horariosactividad> horariosactividads;
 
 	public HorasactividadFecha() {
