@@ -57,7 +57,6 @@ public class Horariosactividad implements Serializable {
 	        inverseJoinColumns = @JoinColumn(name="FK_HORARIOSFECHA", nullable = false)
 	    )
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JsonManagedReference("Horario_dias")
 	private List <HorasactividadFecha> horasactividadFecha;
 	
 	
