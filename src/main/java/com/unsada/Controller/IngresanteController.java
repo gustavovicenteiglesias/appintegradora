@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +24,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.unsada.model.Asistenciaingresante;
 import com.unsada.model.Fechaingresoingresante;
 import com.unsada.model.Ingresante;
 import com.unsada.service.IngresanteServiceApi;
+import com.unsada.util.QrCreatorService;
+import com.unsada.service.AsistenciaIngresanteApi;
 import com.unsada.service.FechaingresoingresanteServiceApi;
+import com.unsada.service.HorariosactividadServiceApi;
 
 @RestController
 @RequestMapping(value = "/api/ingresante")
@@ -35,9 +41,19 @@ import com.unsada.service.FechaingresoingresanteServiceApi;
 public class IngresanteController {
 	@Autowired
 	IngresanteServiceApi ingresanteServiceApi;
+
 	@Autowired
 	@Qualifier("service")
 	FechaingresoingresanteServiceApi fechaIngresoIngresanteServiceApi;
+
+	@Autowired
+	@Qualifier("horariosService")
+	HorariosactividadServiceApi horariosServiceApi;
+
+	@Autowired
+	@Qualifier("asistenciaService")
+
+	AsistenciaIngresanteApi asistenciaService;
 	
 	@GetMapping(value = "/all")
 	public Map<String, Object> listclase() {
@@ -65,7 +81,6 @@ public Map<String, Object> dataClase(@PathVariable("id") Integer id) {
 	HashMap<String, Object> response = new HashMap<String, Object>();
 
 	try {
-
 		Optional<Ingresante> clase = ingresanteServiceApi.findById(id);
 
 		if (clase.isPresent()) {
@@ -89,13 +104,23 @@ public Map<String, Object> dataClase(@PathVariable("id") Integer id) {
 
 
 
-@PostMapping(value = "/create")
-public ResponseEntity<String> create(@RequestBody Ingresante data) {
+@PostMapping(value = "/create/{idHorario}/")
+public ResponseEntity<String> create(@RequestBody Ingresante data,@PathVariable("idHorario") int idHorario, @RequestParam(value="fechaingreso") @DateTimeFormat(pattern="yyyy-MM-dd") Date fechaIngreso, RedirectAttributes ra) {
 
 	try {
-		
-		ingresanteServiceApi.saveingresante(data.getDni(),data.getEnSeguimiento(),data.getGrupoDeRiesgo(),data.getMail(),data.getNombre(),data.getTelefono());
+		Ingresante searchByDni = ingresanteServiceApi.findByDni(data.getDni());
+		if (searchByDni == null){
+			ingresanteServiceApi.saveingresante(data.getDni(),data.getEnSeguimiento(),data.getGrupoDeRiesgo(),data.getMail(),data.getNombre(),data.getTelefono());
+			System.out.println ("not repeated");
+		}else{
+			System.out.println("repeated");
+
+		}
+		int idFechaCreada = nuevaFechaDeIngreso(fechaIngreso, data.getDni());
+		nuevoRegistroDeAsistencia(idFechaCreada, idHorario);
+
 		return new ResponseEntity<>("Save successful ", HttpStatus.OK);
+
 	} catch (Exception e) {
 		
 		return new ResponseEntity<>("" + e, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -131,9 +156,7 @@ public Map<String, Object> update(@PathVariable("id") Integer id, @RequestBody I
 @DeleteMapping(value = "/delete/{id}")
 
 public Map<String, Object> update(@PathVariable("id") Integer id) {
-
 	HashMap<String, Object> response = new HashMap<String, Object>();
-
 	try {
 		ingresanteServiceApi.deleteById(id);
 		;
@@ -166,7 +189,6 @@ public ResponseEntity<String> nuevaFechaDeIngreso(@PathVariable("idIngresante") 
 @GetMapping(value = "/find-fecha-ingreso/{id}")
 public Map<String, Object> findFechaDeIngreso(@PathVariable("id") Integer id) {
 	HashMap<String, Object> response = new HashMap<String, Object>();
-
 	try {
 		Optional<Fechaingresoingresante> fecha = fechaIngresoIngresanteServiceApi.findById(id);
 
@@ -206,6 +228,63 @@ private String parseDateWithHours(String dateAsString){
 		e.printStackTrace();
 	}
 	return null;
+}
+//Obtiene el ingresante por DNI, si el registro no existe para esa fecha lo crea. Retorna el id de la fecha creada
+private int nuevaFechaDeIngreso(@DateTimeFormat(pattern="yyyy-MM-dd") Date fechaIngreso, String dni){
+	Ingresante ingresante = ingresanteServiceApi.findByDni(dni);
+	List<Fechaingresoingresante> fechas = fechaIngresoIngresanteServiceApi.findByIngresante(ingresante);
+	Fechaingresoingresante fechaIngresoIngresante= new Fechaingresoingresante();
+	fechaIngresoIngresante.setFecha(fechaIngreso);
+	fechaIngresoIngresante.setIngresante(ingresante);
+	int getIdFecha = fechaIsPresent(fechas, fechaIngreso);
+	if(getIdFecha == 0 ){
+		return(fechaIngresoIngresanteServiceApi.save(fechaIngresoIngresante).getIdFechaIngresante());
+	}else{
+		return getIdFecha;
+	}
+
+}
+private void nuevoRegistroDeAsistencia(int idFechaCreada, int idHorario){
+	Asistenciaingresante asistencia = new Asistenciaingresante();
+	try {
+		asistencia.setFechaingresoingresante(fechaIngresoIngresanteServiceApi.findById(idFechaCreada).get());
+		asistencia.setHorariosactividad(horariosServiceApi.findById(idHorario).get());
+		asistencia.setPresente((byte) 1);
+		asistencia.setHabilitado((byte) 1);
+		asistencia.setQr(QrCreatorService.generateQrId());
+
+	} catch (Exception e) {
+		e.printStackTrace();
+		System.out.println("Error cargando datos");
+
+	}
+	try {
+		asistenciaService.save(asistencia);
+
+	} catch (Exception e) {
+		System.out.println("Error creando el registro");
+	}
+
+}
+
+private int fechaIsPresent(List<Fechaingresoingresante> fechas, Date fechaIngreso) {
+	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	for (Fechaingresoingresante fechaingresoingresante : fechas) {
+		Date dbTime = fechaingresoingresante.getFecha();
+		try {
+			Date date = format.parse(dbTime.toString());
+			if(date.equals(fechaIngreso)){
+				System.out.println("this is the same");
+				return fechaingresoingresante.getIdFechaIngresante();
+			}else{
+				System.out.println("not the same");
+			}
+		} catch (ParseException e) {
+			System.out.println("error fecha format");
+			e.printStackTrace();
+		}
+	}
+	return 0;
 }
 
 }

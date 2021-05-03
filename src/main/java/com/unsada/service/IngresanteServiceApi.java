@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 import com.unsada.model.Ingresante;
 
 public interface IngresanteServiceApi extends CrudRepository<Ingresante, Integer> {
@@ -19,4 +21,8 @@ public interface IngresanteServiceApi extends CrudRepository<Ingresante, Integer
 	@Transactional
 	@Query(value="UPDATE ingresante SET id_ingresante=?,dni=?,en_seguimiento=?,grupo_de_riesgo=?,mail=?,nombre=?,telefono=? WHERE id_ingresante=?",nativeQuery = true )
 	public void update (Integer id,String dni,byte enseguimiento,byte gruporiego,String mail, String nombre,String telefono,Integer where);
+
+	public Ingresante findByDni(String dni);
+
+	public Ingresante findByIdIngresante(int idIngresante);
 }

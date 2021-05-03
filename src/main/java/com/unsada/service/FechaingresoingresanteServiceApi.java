@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -28,5 +29,6 @@ public interface FechaingresoingresanteServiceApi extends CrudRepository<Fechain
 	public void  saveFechaIngresoIngresante( String date, Integer ingresante);
 
 	public List<Fechaingresoingresante> findByIngresante(Ingresante ingresante);
+	public List<Fechaingresoingresante> findAll();
 }
 

@@ -1,4 +1,4 @@
-package com.unsada.model;
+package com.unsada.util;
 
 import java.io.IOException;
 import java.util.Date;

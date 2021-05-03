@@ -41,9 +41,9 @@ public class FechaingresoingresanteServiceImpl implements Fechaingresoingresante
 	}
 
 	@Override
-	public Iterable<Fechaingresoingresante> findAll() {
+	public List<Fechaingresoingresante> findAll() {
 		// TODO Auto-generated method stub
-		return fechaingresoingresanteDao.findAll();
+		return (List<Fechaingresoingresante>) fechaingresoingresanteDao.findAll();
 	}
 
 	@Override
@@ -93,6 +93,7 @@ public class FechaingresoingresanteServiceImpl implements Fechaingresoingresante
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 	
 

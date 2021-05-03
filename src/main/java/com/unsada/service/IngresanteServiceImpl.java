@@ -1,5 +1,6 @@
 package com.unsada.service;
 
+import java.lang.StackWalker.Option;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,11 +92,19 @@ public class IngresanteServiceImpl implements IngresanteServiceApi {
 		
 	}
 
-	
+	@Override
+	public Ingresante findByDni(String dni) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-	
-	
+	@Override
+	public Ingresante findByIdIngresante(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-	
+
+
 
 }
