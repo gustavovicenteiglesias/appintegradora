@@ -151,7 +151,7 @@ public void crearRegistrosDeFecha(Date fechaInicio, Date fechaFin){
 
 	System.out.println("fin: " + fin);
 
-	Stream<LocalDate> dates = inicio.datesUntil(fin);
-	System.out.println(dates);
+	//Stream<LocalDate> dates = inicio.datesUntil(fin);
+	//System.out.println(dates);
 }
 }
