@@ -27,6 +27,7 @@ import com.unsada.model.Ingresante;
 import com.unsada.service.ActividadserviceApi;
 import com.unsada.service.AsistenciaIngresanteApi;
 import com.unsada.service.AulaServiceApi;
+import com.unsada.service.FechaServiceApi;
 import com.unsada.service.FechaingresoingresanteServiceApi;
 import com.unsada.service.HorariosactividadServiceApi;
 
@@ -207,15 +208,14 @@ public class AsistenciaController {
   @PutMapping(value = "/update/{id}/{uuid}")
 
   public Map<String, Object> updateuuid(@PathVariable("id") Integer id,@PathVariable("uuid") String uuid, @RequestBody Asistenciaingresante data) {
-
-  	HashMap<String, Object> response = new HashMap<String, Object>();
+    HashMap<String, Object> response = new HashMap<String, Object>();
+    Optional<Asistenciaingresante> asistencia = asistenciaIngresanteApi.findById(id);
 
   	try {
   		data.setIdAsistenciaIngresante(id);
   		data.setHabilitado(data.getHabilitado());
-  		
-  		data.setFechaingresoingresante(data.getFechaingresoingresante());
-  		data.setHorariosactividad(data.getHorariosactividad());
+  		data.setFechaingresoingresante(asistencia.get().getFechaingresoingresante());
+      data.setHorariosactividad(asistencia.get().getHorariosactividad());
   		data.setQr(uuid);
   		asistenciaIngresanteApi.save(data);
   		response.put("message", "Successful update");
