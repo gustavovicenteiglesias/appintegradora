@@ -210,6 +210,7 @@ public class AsistenciaController {
   public Map<String, Object> updateuuid(@PathVariable("id") Integer id,@PathVariable("uuid") String uuid, @RequestBody Asistenciaingresante data) {
     HashMap<String, Object> response = new HashMap<String, Object>();
     Optional<Asistenciaingresante> asistencia = asistenciaIngresanteApi.findById(id);
+    
 
   	try {
   		data.setIdAsistenciaIngresante(id);
@@ -217,9 +218,11 @@ public class AsistenciaController {
   		data.setFechaingresoingresante(asistencia.get().getFechaingresoingresante());
       data.setHorariosactividad(asistencia.get().getHorariosactividad());
   		data.setQr(uuid);
+      data.setPresente((byte) 1);
   		asistenciaIngresanteApi.save(data);
   		response.put("message", "Successful update");
   		response.put("success", true);
+      response.put("nombre", asistencia.get().getFechaingresoingresante().getIngresante().getNombre());
   		return response;
   	} catch (Exception e) {
   		response.put("message", e.getMessage());
